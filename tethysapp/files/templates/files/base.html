@@ -13,16 +13,13 @@
 {% block app_title %}{{ tethys_app.name }}{% endblock %}
 
 {% block app_navigation_items %}
-  <li class="title">App Navigation</li>
-  <li class="active"><a href="">Home</a></li>
-  <li><a href="">Jobs</a></li>
-  <li><a href="">Results</a></li>
-  <li class="title">Steps</li>
-  <li><a href="">1. The First Step</a></li>
-  <li><a href="">2. The Second Step</a></li>
-  <li><a href="">3. The Third Step</a></li>
-  <li class="separator"></li>
-  <li><a href="">Get Started</a></li>
+  {% url 'files:home' as home_url %}
+  {% url 'files:upload_files' as upload_files_url %}
+  {% url 'files:add_file_database' as add_file_database_url %}
+  <li class="title">Navigation</li>
+  <li class="{% if request.path == home_url %}active{% endif %}"><a href="{{ home_url }}">Home</a></li>
+  <li class="{% if request.path == upload_files_url %}active{% endif %}"><a href="{{ upload_files_url }}">Upload Files</a></li>
+  <li class="{% if request.path == add_file_database_url %}active{% endif %}"><a href="{{ add_file_database_url }}">Add File Database</a></li>
 {% endblock %}
 
 {% block app_content %}

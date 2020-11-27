@@ -1,0 +1,21 @@
+{% extends "files/base.html" %}
+{% load tethys_gizmos %}
+
+{% block app_content %}
+  <h1>Upload Files</h1>
+  <form id="upload-files-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% gizmo name_input %}
+    {% gizmo database_select_input %}
+    <div class="form-group{% if database_files_error %} has-error{% endif %}">
+      <label class="control-label">Database File</label>
+      <input type="file" name="upload-files" multiple>
+      {% if database_files_error %}<p class="help-block">{{ database_files_error }}</p>{% endif %}
+    </div>
+  </form>
+{% endblock %}
+
+{% block app_actions %}
+  {% gizmo cancel_button %}
+  {% gizmo add_button %}
+{% endblock %}

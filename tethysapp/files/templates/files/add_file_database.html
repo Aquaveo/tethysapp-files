@@ -1,0 +1,19 @@
+{% extends "files/base.html" %}
+{% load tethys_gizmos %}
+
+{% block app_content %}
+  <h1>Create File Database</h1>
+  <form id="add-file-database-form" method="post">
+    {% csrf_token %}
+    {% gizmo name_input %}
+  </form>
+{% endblock %}
+
+{% block app_actions %}
+  {% gizmo cancel_button %}
+  {% gizmo add_button %}
+{% endblock %}
+
+
+</body>
+</html>

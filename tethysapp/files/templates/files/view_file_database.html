@@ -1,0 +1,22 @@
+{% extends "files/base.html" %}
+
+{% block app_content %}
+<h1>File Database: {{ file_database_id }}</h1>
+{% for file_collection in file_collections %}
+    <hr>
+    <h3>Collection: {{ file_collection.id }}</h3>
+    <p><strong>Path:</strong> {{ file_collection.path }}</p>
+    <p><strong>Meta:</strong> {{ file_collection.path }}</p>
+    <p><strong>Files:</strong></p>
+    <p>
+        <ul>
+        {% for f in file_collection.files %}
+            <li>{{ f }}</li>
+        {% endfor %}
+        </ul>
+    </p>
+{% endfor %}
+{% endblock %}
+
+{% block app_actions %}
+{% endblock %}
