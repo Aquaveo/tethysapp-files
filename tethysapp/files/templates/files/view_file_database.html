@@ -2,20 +2,31 @@
 
 {% block app_content %}
 <h1>File Database: {{ file_database_id }}</h1>
-{% for file_collection in file_collections %}
-    <hr>
-    <h3>Collection: {{ file_collection.id }}</h3>
-    <p><strong>Path:</strong> {{ file_collection.path }}</p>
-    <p><strong>Meta:</strong> {{ file_collection.path }}</p>
-    <p><strong>Files:</strong></p>
-    <p>
-        <ul>
-        {% for f in file_collection.files %}
-            <li>{{ f }}</li>
-        {% endfor %}
-        </ul>
-    </p>
-{% endfor %}
+{% if file_collections %}
+    {% for file_collection in file_collections %}
+        <hr>
+        <h3>Collection: {{ file_collection.meta.name }}
+            <a type="button" class="btn btn-danger" href="{% url 'files:delete_file_collection' file_collection.id %}">
+             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </a>
+        </h3>
+
+        <p><strong>ID:</strong> {{ file_collection.id }}</p>
+        <p><strong>Path:</strong> {{ file_collection.path }}</p>
+        <p><strong>Meta:</strong> {{ file_collection.meta }}</p>
+        <p><strong>Files:</strong></p>
+
+        <p>
+            <ul>
+            {% for f in file_collection.files %}
+                <li>{{ f }}</li>
+            {% endfor %}
+            </ul>
+        </p>
+    {% endfor %}
+{% else %}
+    <p>No collections found for this database...</p>
+{% endif %}
 {% endblock %}
 
 {% block app_actions %}

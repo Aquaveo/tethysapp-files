@@ -49,7 +49,17 @@ class Files(TethysAppBase):
                 name='view_file_database',
                 url='files/file_database/{file_database_id}',
                 controller='files.controllers.view_file_database'
-            )
+            ),
+            UrlMap(
+                name='delete_file_database',
+                url='files/file_database/delete/{file_database_id}',
+                controller='files.controllers.delete_file_database'
+            ),
+            UrlMap(
+                name='delete_file_collection',
+                url='files/file_collection/delete/{file_collection_id}',
+                controller='files.controllers.delete_file_collection'
+            ),
         )
 
         return url_maps

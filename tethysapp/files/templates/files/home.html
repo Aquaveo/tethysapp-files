@@ -3,8 +3,33 @@
 
 {% block app_content %}
 <h1>File Databases</h1>
-{% if file_databases_table %}
-  {% gizmo file_databases_table %}
+{% if table_rows %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">ID</th>
+        <th scope="col">Path</th>
+        <th scope="col">Collection Count</th>
+        <th scope="col">Meta</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in table_rows %}
+      <tr>
+        <td><a href="{% url 'files:view_file_database' row.id %}">{{ row.name }}</a></td>
+        <td>{{ row.id }}</td>
+        <td>{{ row.path }}</td>
+        <td>{{ row.collection_count }}</td>
+        <td>{{ row.meta }}</td>
+        <td><a type="button" class="btn btn-danger" href="{% url 'files:delete_file_database' row.id %}">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        </a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% else %}
   <p>No FileDatabases found...</p>
 {% endif %}
@@ -12,4 +37,5 @@
 
 {% block app_actions %}
   {% gizmo upload_files_button %}
+  {% gizmo add_file_database_button %}
 {% endblock %}

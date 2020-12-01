@@ -17,14 +17,16 @@ def init_primary_db(engine, first_time):
     AppUsersBase.metadata.create_all(engine)
 
 
-def add_uploaded_files(workspace, session, name, database_id, upload_files):
+def add_uploaded_files(workspace, session, name, notes, database_id, upload_files):
     """
     Upload a new file collection
     """
     # Serialize data to json
+    meta_notes = notes or ''
     database_uuid = uuid.UUID('{' + database_id + '}')
     metadata_dict = {
         'name': name,
+        'notes': meta_notes,
     }
 
     file_collection_client = FileCollectionClient.new(session=session, file_database_id=database_uuid,

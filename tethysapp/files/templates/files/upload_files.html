@@ -6,6 +6,7 @@
   <form id="upload-files-form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% gizmo name_input %}
+    {% gizmo notes_input %}
     {% gizmo database_select_input %}
     <div class="form-group{% if database_files_error %} has-error{% endif %}">
       <label class="control-label">Database File</label>
